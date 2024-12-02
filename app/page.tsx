@@ -1,5 +1,6 @@
 import styles from "./page.module.css";
 import Image from "next/image";
+import ButtonLink from "@/app/_compornents/ButtonLink";
 
 type News = {
   id: string;
@@ -44,6 +45,7 @@ const data: { contents: News[] } = {
 };
 
 export default function Home() {
+  const sliceData = data.contents.slice(0, 2);
   // JavaScriptの定数や式などを書くことができる
   const name = "世界";
 
@@ -70,7 +72,7 @@ export default function Home() {
       <section className={styles.news}>
         <h2 className={styles.newsTitle}>News</h2>
         <ul>
-          {data.contents.map((article) => (
+          {sliceData.map((article) => (
             <li key={article.id} className={styles.list}>
               <div className={styles.link}>
                 <Image
@@ -100,6 +102,9 @@ export default function Home() {
             </li>
           ))}
         </ul>
+        <div className={styles.newsLink}>
+          <ButtonLink href="/news">もっとみる</ButtonLink>
+        </div>
       </section>
     </>
   );
